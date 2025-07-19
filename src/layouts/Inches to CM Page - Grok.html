@@ -1,0 +1,107 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{Inches} Inches to Centimeters - Conversion Calculator</title>
+  <meta name="description" content="Convert {Inches} inches to centimeters with our easy-to-use calculator. Instantly find out that {Inches} inches equals {Centimeters} cm. Explore related conversions!">
+  <meta name="keywords" content="{Inches} inches to cm, inches to centimeters, {Inches} in to cm, conversion calculator, {Inches} inch conversion">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+  <header class="bg-blue-600 text-white py-4">
+    <div class="container mx-auto px-4">
+      <h1 class="text-2xl font-bold">{Inches} Inches to Centimeters</h1>
+    </div>
+  </header>
+  <main class="container mx-auto px-4 py-6">
+    <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">Convert {Inches} Inches to Centimeters</h2>
+      <p class="mb-4">{Inches} inches equals <strong>{Centimeters} centimeters</strong>.</p>
+      <div class="mb-4">
+        <label for="inches" class="block text-sm font-medium text-gray-700">Enter Inches:</label>
+        <input type="number" id="inches" value="{Inches}" step="0.01" class="mt-1 p-2 border rounded w-32">
+        <button onclick="convert()" class="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Convert</button>
+        <p class="mt-2">Result: <span id="result" class="font-bold">{Centimeters}</span> cm</p>
+      </div>
+      <script>
+        function convert() {
+          const inches = parseFloat(document.getElementById('inches').value);
+          if (isNaN(inches)) {
+            document.getElementById('result').textContent = 'Invalid input';
+            return;
+          }
+          const cm = (inches * 2.54).toFixed(2);
+          document.getElementById('result').textContent = cm;
+        }
+      </script>
+    </section>
+    <section class="bg-white p-6 rounded-lg shadow-md mb-6">
+      <h2 class="text-xl font-semibold mb-4">About This Conversion</h2>
+      <p class="mb-4">{UniqueFact}</p>
+      <p class="mb-4">Converting {Inches} inches to centimeters is simple: multiply by 2.54. So, {Inches} inches × 2.54 = {Centimeters} cm. This conversion is useful in fields like {Context}, where precise measurements are critical.</p>
+    </section>
+    <section class="bg-white p-6 rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-4">Related Conversions</h2>
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2 border">Inches</th>
+            <th class="p-2 border">Centimeters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="p-2 border"><a href="/{Inches-0.1}-inches-to-cm.html">{Inches-0.1}</a></td><td class="p-2 border">{Centimeters-0.254}</td></tr>
+          <tr><td class="p-2 border"><a href="/{Inches-0.05}-inches-to-cm.html">{Inches-0.05}</a></td><td class="p-2 border">{Centimeters-0.127}</td></tr>
+          <tr><td class="p-2 border"><a href="/{Inches+0.05}-inches-to-cm.html">{Inches+0.05}</a></td><td class="p-2 border">{Centimeters+0.127}</td></tr>
+          <tr><td class="p-2 border"><a href="/{Inches+0.1}-inches-to-cm.html">{Inches+0.1}</a></td><td class="p-2 border">{Centimeters+0.254}</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer class="bg-gray-800 text-white py-4">
+    <div class="container mx-auto px-4">
+      <p>© 2025 Inches to Centimeters Converter. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
