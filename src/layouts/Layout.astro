@@ -19,7 +19,7 @@ const canonicalURL = canonical || Astro.url.href;
 ---
 
 <!doctype html>
-<html lang="it" x-data="{ darkMode: false }" x-init="darkMode = localStorage.getItem('darkMode') === 'true'" :class="{ 'dark': darkMode }">
+<html lang="it" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,7 +71,7 @@ const canonicalURL = canonical || Astro.url.href;
     </script>
   </head>
   
-  <body class="bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200 transition-colors duration-300">
+  <body class="bg-neutral-900 text-neutral-200">
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-500 text-white px-4 py-2 rounded-md z-50">
       Vai al contenuto principale
@@ -121,14 +121,14 @@ const canonicalURL = canonical || Astro.url.href;
   }
   
   ::-webkit-scrollbar-track {
-    @apply bg-neutral-100 dark:bg-neutral-800;
+    @apply bg-neutral-800;
   }
   
   ::-webkit-scrollbar-thumb {
-    @apply bg-primary-400 dark:bg-primary-600 rounded-full;
+    @apply bg-primary-600 rounded-full;
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary-500 dark:bg-primary-500;
+    @apply bg-primary-500;
   }
 </style>

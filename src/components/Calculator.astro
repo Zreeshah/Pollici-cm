@@ -1,29 +1,29 @@
 ---
 ---
 
-<section id="calcolatore" class="py-16 lg:py-24 bg-white dark:bg-neutral-800">
+<section id="calcolatore" class="py-16 lg:py-24 bg-neutral-800">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       <!-- Section Header -->
       <div class="text-center mb-12 animate-fade-in">
-        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-200 mb-4 serif">
+        <h2 class="text-3xl lg:text-4xl font-bold text-neutral-200 mb-4 serif">
           <em>Calcolatore Pollici - Centimetri</em>
         </h2>
-        <p class="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto italic">
+        <p class="text-lg text-neutral-400 max-w-2xl mx-auto italic">
           <em>Converti istantaneamente pollici in centimetri e millimetri con precisione assoluta</em>
         </p>
       </div>
 
       <!-- Calculator Widget -->
       <div 
-        class="bg-gradient-to-br from-primary-50 to-neutral-100 dark:from-neutral-700 dark:to-neutral-800 rounded-2xl p-8 shadow-xl animate-scale-in"
+        class="bg-gradient-to-br from-neutral-700 to-neutral-800 rounded-2xl p-8 shadow-xl animate-scale-in"
         x-data="calculator()"
       >
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- Input Section -->
           <div class="space-y-6">
             <div>
-              <label for="inches-input" class="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+              <label for="inches-input" class="block text-sm font-semibold text-neutral-300 mb-2">
                 <em>Inserisci i pollici da convertire:</em>
               </label>
               <div class="relative">
@@ -34,19 +34,19 @@
                   @input="convert()"
                   step="0.01"
                   placeholder="es. 12.5"
-                  class="w-full px-4 py-3 text-lg border-2 border-primary-200 dark:border-neutral-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:bg-neutral-700 dark:text-neutral-200 transition-all duration-200"
+                  class="w-full px-4 py-3 text-lg border-2 border-neutral-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-neutral-700 text-neutral-200 transition-all duration-200"
                   aria-describedby="inches-help"
                 />
-                <span class="absolute right-3 top-3 text-neutral-500 dark:text-neutral-400 font-medium">pollici</span>
+                <span class="absolute right-3 top-3 text-neutral-400 font-medium">pollici</span>
               </div>
-              <p id="inches-help" class="text-sm text-neutral-600 dark:text-neutral-400 mt-2 italic">
+              <p id="inches-help" class="text-sm text-neutral-400 mt-2 italic">
                 <em>Usa il punto decimale per valori frazionari (es. 5.5)</em>
               </p>
             </div>
 
             <!-- Quick Conversion Buttons -->
             <div class="space-y-3">
-              <p class="text-sm font-semibold text-neutral-700 dark:text-neutral-300">
+              <p class="text-sm font-semibold text-neutral-300">
                 <em>Conversioni rapide:</em>
               </p>
               <div class="grid grid-cols-2 gap-2">
@@ -80,40 +80,40 @@
 
           <!-- Results Section -->
           <div class="space-y-6">
-            <div class="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-md">
-              <h3 class="text-xl font-bold text-neutral-800 dark:text-neutral-200 mb-4 serif">
+            <div class="bg-neutral-800 rounded-xl p-6 shadow-md">
+              <h3 class="text-xl font-bold text-neutral-200 mb-4 serif">
                 <em>Risultati della conversione:</em>
               </h3>
               
               <div class="space-y-4">
                 <!-- Centimeters -->
-                <div class="flex justify-between items-center p-3 bg-primary-50 dark:bg-neutral-700 rounded-lg">
-                  <span class="font-medium text-neutral-700 dark:text-neutral-300 italic">
+                <div class="flex justify-between items-center p-3 bg-neutral-700 rounded-lg">
+                  <span class="font-medium text-neutral-300 italic">
                     <em>Centimetri:</em>
                   </span>
-                  <span class="text-xl font-bold text-primary-600 dark:text-primary-400" x-text="centimeters + ' cm'"></span>
+                  <span class="text-xl font-bold text-primary-400" x-text="centimeters + ' cm'"></span>
                 </div>
 
                 <!-- Millimeters -->
-                <div class="flex justify-between items-center p-3 bg-neutral-100 dark:bg-neutral-700 rounded-lg">
-                  <span class="font-medium text-neutral-700 dark:text-neutral-300 italic">
+                <div class="flex justify-between items-center p-3 bg-neutral-700 rounded-lg">
+                  <span class="font-medium text-neutral-300 italic">
                     <em>Millimetri:</em>
                   </span>
-                  <span class="text-xl font-bold text-neutral-600 dark:text-neutral-400" x-text="millimeters + ' mm'"></span>
+                  <span class="text-xl font-bold text-neutral-400" x-text="millimeters + ' mm'"></span>
                 </div>
 
                 <!-- Meters (for larger values) -->
-                <div x-show="parseFloat(centimeters) >= 100" class="flex justify-between items-center p-3 bg-neutral-100 dark:bg-neutral-700 rounded-lg">
-                  <span class="font-medium text-neutral-700 dark:text-neutral-300 italic">
+                <div x-show="parseFloat(centimeters) >= 100" class="flex justify-between items-center p-3 bg-neutral-700 rounded-lg">
+                  <span class="font-medium text-neutral-300 italic">
                     <em>Metri:</em>
                   </span>
-                  <span class="text-xl font-bold text-neutral-600 dark:text-neutral-400" x-text="meters + ' m'"></span>
+                  <span class="text-xl font-bold text-neutral-400" x-text="meters + ' m'"></span>
                 </div>
               </div>
 
               <!-- Formula Display -->
-              <div class="mt-6 p-4 bg-primary-100 dark:bg-neutral-600 rounded-lg">
-                <p class="text-sm text-neutral-700 dark:text-neutral-300 italic">
+              <div class="mt-6 p-4 bg-neutral-600 rounded-lg">
+                <p class="text-sm text-neutral-300 italic">
                   <em><strong>Formula:</strong> <span x-text="inches"></span> pollici × 2.54 = <span x-text="centimeters"></span> cm</em>
                 </p>
               </div>
@@ -124,11 +124,11 @@
 
       <!-- Additional Info -->
       <div class="mt-12 text-center">
-        <div class="bg-neutral-100 dark:bg-neutral-700 rounded-xl p-6">
-          <h3 class="text-lg font-bold text-neutral-800 dark:text-neutral-200 mb-3 serif">
+        <div class="bg-neutral-700 rounded-xl p-6">
+          <h3 class="text-lg font-bold text-neutral-200 mb-3 serif">
             <em>Fattore di conversione preciso</em>
           </h3>
-          <p class="text-neutral-600 dark:text-neutral-400 italic">
+          <p class="text-neutral-400 italic">
             <em>1 pollice = 2.54 centimetri esatti (definizione internazionale)</em>
           </p>
         </div>
