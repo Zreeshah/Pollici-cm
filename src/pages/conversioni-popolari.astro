@@ -45,10 +45,10 @@ const conversions = parseCSV(csvData);
                   pollici
                 </div>
                 <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
-                  {conversion.cm} cm
+                  {conversion.centimeters} cm
                 </div>
                 <div class="text-xs text-neutral-400 dark:text-neutral-500">
-                  = {conversion.mm} mm
+                  = {(conversion.centimeters * 10).toFixed(1)} mm
                 </div>
               </div>
             </a>
