@@ -25,34 +25,148 @@ const conversions = parseCSV(csvData);
         <p class="text-xl text-neutral-600 dark:text-neutral-400 mb-8 italic leading-relaxed">
           <em>Database completo con {conversions.length} conversioni precise da pollici a centimetri</em>
         </p>
+        
+        <!-- Quick Navigation -->
+        <div class="mb-8">
+          <div class="flex flex-wrap justify-center gap-2 mb-4">
+            <a href="#frazioni" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+              <em>Frazioni</em>
+            </a>
+            <a href="#piccole" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+              <em>1-10 Pollici</em>
+            </a>
+            <a href="#medie" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+              <em>11-50 Pollici</em>
+            </a>
+            <a href="#grandi" class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm transition-colors">
+              <em>50+ Pollici</em>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Conversions Grid -->
     <section class="pb-20 px-4">
       <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {conversions.map((conversion) => (
-            <a 
-              href={`/${conversion.slug}`}
-              class="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
-            >
-              <div class="text-center">
-                <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-105 transition-transform">
-                  {conversion.inches}"
+        <!-- Frazioni (< 1 inch) -->
+        <div id="frazioni" class="mb-16">
+          <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-6 serif">
+            <em>Frazioni di Pollice</em>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {conversions.filter(c => c.inches < 1).map((conversion) => (
+              <a 
+                href={`/${conversion.slug}`}
+                class="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-105 transition-transform">
+                    {conversion.inches}"
+                  </div>
+                  <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
+                    pollici
+                  </div>
+                  <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
+                    {conversion.centimeters} cm
+                  </div>
+                  <div class="text-xs text-neutral-400 dark:text-neutral-500">
+                    = {(conversion.centimeters * 10).toFixed(1)} mm
+                  </div>
                 </div>
-                <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
-                  pollici
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Piccole (1-10 inches) -->
+        <div id="piccole" class="mb-16">
+          <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-6 serif">
+            <em>Misure Piccole (1-10 Pollici)</em>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {conversions.filter(c => c.inches >= 1 && c.inches <= 10).map((conversion) => (
+              <a 
+                href={`/${conversion.slug}`}
+                class="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-105 transition-transform">
+                    {conversion.inches}"
+                  </div>
+                  <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
+                    pollici
+                  </div>
+                  <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
+                    {conversion.centimeters} cm
+                  </div>
+                  <div class="text-xs text-neutral-400 dark:text-neutral-500">
+                    = {(conversion.centimeters * 10).toFixed(1)} mm
+                  </div>
                 </div>
-                <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
-                  {conversion.centimeters} cm
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Medie (11-50 inches) -->
+        <div id="medie" class="mb-16">
+          <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-6 serif">
+            <em>Misure Medie (11-50 Pollici)</em>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {conversions.filter(c => c.inches > 10 && c.inches <= 50).map((conversion) => (
+              <a 
+                href={`/${conversion.slug}`}
+                class="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-105 transition-transform">
+                    {conversion.inches}"
+                  </div>
+                  <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
+                    pollici
+                  </div>
+                  <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
+                    {conversion.centimeters} cm
+                  </div>
+                  <div class="text-xs text-neutral-400 dark:text-neutral-500">
+                    = {(conversion.centimeters * 10).toFixed(1)} mm
+                  </div>
                 </div>
-                <div class="text-xs text-neutral-400 dark:text-neutral-500">
-                  = {(conversion.centimeters * 10).toFixed(1)} mm
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <!-- Grandi (50+ inches) -->
+        <div id="grandi" class="mb-16">
+          <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-6 serif">
+            <em>Misure Grandi (50+ Pollici)</em>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {conversions.filter(c => c.inches > 50).map((conversion) => (
+              <a 
+                href={`/${conversion.slug}`}
+                class="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 hover:border-blue-300 dark:hover:border-blue-600"
+              >
+                <div class="text-center">
+                  <div class="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2 group-hover:scale-105 transition-transform">
+                    {conversion.inches}"
+                  </div>
+                  <div class="text-sm text-neutral-500 dark:text-neutral-400 mb-3">
+                    pollici
+                  </div>
+                  <div class="text-lg font-semibold text-neutral-800 dark:text-neutral-200 mb-1">
+                    {conversion.centimeters} cm
+                  </div>
+                  <div class="text-xs text-neutral-400 dark:text-neutral-500">
+                    = {(conversion.centimeters * 10).toFixed(1)} mm
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>

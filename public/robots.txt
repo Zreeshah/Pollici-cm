@@ -4,6 +4,9 @@ Allow: /
 # Sitemap
 Sitemap: https://pollici-in-cm.it/sitemap.xml
 
+# Allow indexing of all conversion pages
+Allow: /*-pollici-in-cm/
+
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
 

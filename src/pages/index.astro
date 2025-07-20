@@ -38,7 +38,7 @@ const conversions = parseCSV(csvData);
           </div>
           
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {conversions.slice(0, 16).map((conversion) => (
+            {conversions.slice(0, 20).map((conversion) => (
               <a 
                 href={`/${conversion.slug}`}
                 class="bg-primary-50 dark:bg-neutral-700 hover:bg-primary-100 dark:hover:bg-neutral-600 p-4 rounded-lg text-center transition-colors duration-200 group"
@@ -64,7 +64,7 @@ const conversions = parseCSV(csvData);
               </svg>
             </a>
             <p class="text-neutral-600 dark:text-neutral-400 italic">
-              <em>Esplora le conversioni più popolari nel nostro database completo</em>
+              <em>Esplora tutte le {conversions.length} conversioni nel nostro database completo</em>
             </p>
           </div>
         </div>
