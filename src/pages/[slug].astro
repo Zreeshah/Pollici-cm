@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { parseCSV, generateRelatedConversions, generateCategoryLinks, generateRandomLinks } from '../utils/csvParser';
+import { parseCSV, generateRelatedConversions, generateCategoryLinks, generateRandomLinks, generatePopularLinks, generateSequentialLinks } from '../utils/csvParser';
 
 // Import CSV data
 import csvData from '../assets/Inches to CM Data.csv?raw';
@@ -31,7 +31,9 @@ const navigationLinks = {
   previous: currentIndex > 0 ? allConversions[currentIndex - 1] : null,
   next: currentIndex < allConversions.length - 1 ? allConversions[currentIndex + 1] : null,
   category: generateCategoryLinks(inches, allConversions),
-  random: generateRandomLinks(allConversions, slug)
+  random: generateRandomLinks(allConversions, slug),
+  popular: generatePopularLinks(allConversions, slug),
+  sequential: generateSequentialLinks(inches, allConversions)
 };
 
 // SEO content generation
