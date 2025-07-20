@@ -2,6 +2,7 @@ interface ConversionData {
   inches: number;
   centimeters: number;
   uniqueFact: string;
+  context: string;
   slug: string;
 }
 
@@ -20,17 +21,18 @@ export function parseCSV(csvContent: string): ConversionData[] {
   
   return validLines.slice(1).map(line => {
     // Handle CSV parsing with quoted fields
-    const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+    const values = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
     const cleanValues = values.map(val => val.replace(/^"|"$/g, ''));
     
     // Skip lines that don't have enough data
-    if (cleanValues.length < 3) {
+    if (cleanValues.length < 4) {
       return null;
     }
     
     const inches = parseFloat(cleanValues[0]);
     const centimeters = parseFloat(cleanValues[1]);
     const uniqueFact = cleanValues[2] || '';
+    const context = cleanValues[3] || 'daily life';
     
     // Skip invalid numeric data
     if (isNaN(inches) || isNaN(centimeters) || !isFinite(inches) || !isFinite(centimeters)) {
@@ -44,6 +46,7 @@ export function parseCSV(csvContent: string): ConversionData[] {
       inches,
       centimeters,
       uniqueFact,
+      context,
       slug
     };
   }).filter(Boolean); // Remove null entries
@@ -65,6 +68,7 @@ export function generateRelatedConversions(currentInches: number, allData: Conve
           inches: targetInches,
           centimeters: Math.round(targetInches * 2.54 * 100) / 100,
           uniqueFact: '',
+          context: 'daily life',
           slug: `${targetInches.toString().replace('.', '-')}-pollici-in-cm`
         });
       }
