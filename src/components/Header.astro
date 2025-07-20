@@ -70,6 +70,16 @@
           >
             <em>Conversioni Popolari</em>
           </a>
+          <a 
+            href="/contatti" 
+            class="font-medium transition-colors duration-200 italic"
+            :class="{ 
+              'text-white hover:text-primary-300': !isScrolled,
+              'text-neutral-200 hover:text-primary-400': isScrolled 
+            }"
+          >
+            <em>Contatti</em>
+          </a>
         </div>
       </div>
 
@@ -124,6 +134,13 @@
           @click="mobileMenuOpen = false"
         >
           <em>Conversioni Popolari</em>
+        </a>
+        <a 
+          href="/contatti" 
+          class="block px-3 py-2 text-neutral-300 hover:text-primary-400 font-medium transition-colors duration-200 italic"
+          @click="mobileMenuOpen = false"
+        >
+          <em>Contatti</em>
         </a>
       </div>
     </div>
