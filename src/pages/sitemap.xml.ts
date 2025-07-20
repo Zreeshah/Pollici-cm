@@ -13,7 +13,7 @@ export const GET: APIRoute = async () => {
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: '/chi-siamo', priority: '0.8', changefreq: 'monthly' },
-    { url: '/sitemap', priority: '0.9', changefreq: 'weekly' }
+    { url: '/conversioni-popolari', priority: '0.9', changefreq: 'weekly' }
   ];
   
   // Generate XML
