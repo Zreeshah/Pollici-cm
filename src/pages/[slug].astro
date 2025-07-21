@@ -396,16 +396,18 @@ else if (context === "industrial") contextActivity = "large-scale projects";
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "{title}",
-    "description": "{description}",
-    "url": "https://pollici-in-cm.it/{slug}",
-    "mainEntity": {
-      "@type": "MathSolver",
-      "name": "Convertitore {inches} Pollici in Centimetri",
-      "description": "Converti {inches} pollici in centimetri con precisione",
-      "mathExpression": "{inches} pollici × 2.54 = {centimeters} centimetri",
-      "result": "{centimeters} cm"
+    "@type": "MathSolver",
+    "name": "Convertitore ${inches} Pollici in Centimetri",
+    "description": "Converti ${inches} pollici in centimetri con precisione matematica",
+    "url": "https://pollici-in-cm.it/${slug}",
+    "inLanguage": "it-IT",
+    "mathExpression": "${inches} × 2.54 = ${centimeters}",
+    "result": "${centimeters} cm",
+    "usageInfo": {
+      "@type": "CreativeWork",
+      "name": "Guida all'uso del convertitore",
+      "description": "Inserisci il valore in pollici per ottenere la conversione precisa in centimetri utilizzando il fattore standard internazionale 2.54",
+      "text": "Formula: Pollici × 2.54 = Centimetri. Esempio: ${inches} pollici × 2.54 = ${centimeters} centimetri"
     }
   }
   </script>
